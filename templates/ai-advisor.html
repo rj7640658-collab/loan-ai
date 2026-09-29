@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Financial Advisor - BFSI LoanAI</title>
+  <meta name="description" content="AI-powered BFSI financial advisor integrated with Claude AI and Groq Llama-3.3-70b for personalized credit improvement, debt restructuring, and loan optimization.">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="bg-ambient-layer">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon-box">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="brand-text">Loan<span>AI</span></div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="eligibility.html" class="nav-link"><i class="fa-solid fa-stamp"></i> Eligibility Checker</a></li>
+          <li><a href="credit-analyzer.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Credit Analyzer</a></li>
+          <li><a href="emi-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> EMI Calculator</a></li>
+          <li><a href="ai-advisor.html" class="nav-link active"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advisor</a></li>
+          <li><a href="history.html" class="nav-link"><i class="fa-solid fa-database"></i> Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="openSettingsBtn" class="btn-icon" title="Configure AI & Google Sheets API Settings">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <a href="eligibility.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-circle-check"></i> Check Eligibility
+          </a>
+          <button class="btn-icon mobile-menu-btn" title="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <div class="page-header">
+        <div class="page-tag">
+          <i class="fa-solid fa-brain"></i> Milestone 4.2
+        </div>
+        <h1 class="page-title">
+          AI Financial <span class="gradient-text">Advisor Copilot</span>
+        </h1>
+        <p class="page-subtitle">
+          Intelligent institutional underwriting guidance, debt restructuring, rejection recovery, and loan optimization powered by Claude 3.5 Sonnet and Groq Cloud.
+        </p>
+      </div>
+
+      <!-- Quick Scenario Prompts -->
+      <div class="suggested-prompts">
+        <div class="prompt-chip" data-prompt="How do I recover after a loan rejection due to high existing EMI obligations?">
+          <i class="fa-solid fa-triangle-exclamation" style="color: var(--danger);"></i> Loan Rejection Recovery
+        </div>
+        <div class="prompt-chip" data-prompt="What is the 1-extra-EMI prepayment strategy and how much interest does it save?">
+          <i class="fa-solid fa-piggy-bank" style="color: var(--success);"></i> Reducing-Balance Prepayment Strategy
+        </div>
+        <div class="prompt-chip" data-prompt="What are the concrete steps to boost my credit score from 670 to 760 in 6 months?">
+          <i class="fa-solid fa-arrow-trend-up" style="color: var(--secondary);"></i> 6-Month Credit Score Building
+        </div>
+        <div class="prompt-chip" data-prompt="How does adding a co-applicant affect my FOIR and loan eligibility amount?">
+          <i class="fa-solid fa-user-plus" style="color: #fbbf24;"></i> Co-Applicant Eligibility Synergy
+        </div>
+      </div>
+
+      <!-- Chat Container -->
+      <div class="chat-container">
+        <!-- Messages Area -->
+        <div id="chatMessages" class="chat-messages">
+          <!-- Initial AI Welcome Message -->
+          <div class="message-bubble message-ai">
+            <div class="message-avatar">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="message-content">
+              <h3 style="margin-top: 0; font-size: 1.1rem; color: #fff;">
+                Welcome to your BFSI Financial Underwriting Copilot
+              </h3>
+              <p>
+                I am your specialized credit advisor trained in institutional banking guidelines, debt-to-income limits (FOIR), reducing-balance amortization schedules, and bureau repair protocols.
+              </p>
+              <p>
+                Click any of the suggested prompt chips above or type your question below (e.g. loan restructuring, interest reduction, CIBIL repair).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" class="form-control" placeholder="Ask financial questions, loan optimization advice, or credit recovery..." style="padding-left: 1.25rem;">
+          <button id="chatSendBtn" class="btn btn-primary" style="padding: 0.8rem 1.4rem;">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Informational Feature Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem;">
+        <div class="glass-card" style="padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem; color: var(--secondary); margin-bottom: 0.5rem; font-weight: 700;">
+            <i class="fa-solid fa-bolt"></i> Groq Llama-3.3-70b
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+            Ultra-low latency inference for instant calculation feedback and quick underwriting checks.
+          </p>
+        </div>
+
+        <div class="glass-card" style="padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem; color: #818cf8; margin-bottom: 0.5rem; font-weight: 700;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Anthropic Claude 3.5 Sonnet
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+            Nuanced financial reasoning, multi-step credit repair roadmaps, and contextual rejection explanations.
+          </p>
+        </div>
+
+        <div class="glass-card" style="padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem; color: var(--success); margin-bottom: 0.5rem; font-weight: 700;">
+            <i class="fa-solid fa-shield-halved"></i> Institutional Underwriting
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+            Backed by mathematical deterministic algorithms ensuring 100% adherence to financial regulations.
+          </p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="brand-text" style="font-size: 1.15rem;">Loan<span>AI</span></div>
+          </div>
+          <p class="footer-desc">AI Underwriting and Financial Planning.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Modules</h4>
+          <ul class="footer-links">
+            <li><a href="eligibility.html" class="footer-link">Eligibility Checker</a></li>
+            <li><a href="credit-analyzer.html" class="footer-link">Credit Analyzer</a></li>
+            <li><a href="emi-calculator.html" class="footer-link">EMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>AI Providers</h4>
+          <ul class="footer-links">
+            <li><a href="https://console.groq.com" target="_blank" class="footer-link">Groq Cloud</a></li>
+            <li><a href="https://anthropic.com" target="_blank" class="footer-link">Claude AI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Cloud & Storage</h4>
+          <ul class="footer-links">
+            <li><a href="history.html" class="footer-link">Saved Applications</a></li>
+            <li><a href="https://sheets.new" target="_blank" class="footer-link">Google Sheets Sync</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 BFSI LoanAI Platform.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 0.5rem;"></i>
+          System API & Cloud Configuration
+        </div>
+        <button id="closeSettingsBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingGroqKey">
+          <span>Groq API Key (Llama-3.3-70b)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-key input-icon"></i>
+          <input type="password" id="settingGroqKey" class="form-control" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingClaudeKey">
+          <span>Claude API Key (Anthropic)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-robot input-icon"></i>
+          <input type="password" id="settingClaudeKey" class="form-control" placeholder="sk-ant-api03-xxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingSheetsUrl">
+          <span>Google Apps Script Web App URL</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-table input-icon"></i>
+          <input type="url" id="settingSheetsUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+      </div>
+
+      <button id="saveSettingsBtn" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
+        <i class="fa-solid fa-floppy-disk"></i> Save Configuration
+      </button>
+    </div>
+  </div>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFSI LoanAI - Intelligent Loan Eligibility & Financial Decision Platform</title>
+  <meta name="description" content="AI-powered BFSI financial platform for loan eligibility checking, reducing-balance EMI calculation, credit score risk analysis, and Claude & Groq AI guidance.">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Ambient Animated Lighting Layer -->
+  <div class="bg-ambient-layer">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon-box">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="brand-text">Loan<span>AI</span></div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="eligibility.html" class="nav-link"><i class="fa-solid fa-stamp"></i> Eligibility Checker</a></li>
+          <li><a href="credit-analyzer.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Credit Analyzer</a></li>
+          <li><a href="emi-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> EMI Calculator</a></li>
+          <li><a href="ai-advisor.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advisor</a></li>
+          <li><a href="history.html" class="nav-link"><i class="fa-solid fa-database"></i> Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="openSettingsBtn" class="btn-icon" title="Configure AI & Google Sheets API Settings">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <a href="eligibility.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-bolt"></i> Quick Check
+          </a>
+          <button class="btn-icon mobile-menu-btn" title="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-pill">
+          <i class="fa-solid fa-shield-halved"></i>
+          BFSI Financial Underwriting & AI Credit Intelligence
+        </div>
+        <h1 class="hero-title">
+          Smarter Loan Decisions Powered by <span class="gradient-text">Institutional AI</span>
+        </h1>
+        <p class="hero-description">
+          Evaluate multi-factor retail loan eligibility, model accurate reducing-balance EMIs, analyze credit bureau risk tiers, and receive hyper-personalized financial underwriting insights via Claude & Groq AI.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="eligibility.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-circle-check"></i> Check Loan Eligibility
+          </a>
+          <a href="credit-analyzer.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-gauge-high"></i> Analyze Credit Score
+          </a>
+          <a href="emi-calculator.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-calculator"></i> Calculate EMI
+          </a>
+        </div>
+      </section>
+
+      <!-- Institutional Metrics Ribbon -->
+      <section class="stats-ribbon">
+        <div class="stat-item">
+          <div class="stat-number">₹30,000+</div>
+          <div class="stat-label">Income Benchmark</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">700+</div>
+          <div class="stat-label">Min Credit Score</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">20×</div>
+          <div class="stat-label">Sanction Multiplier</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Reducing Balance Math</div>
+        </div>
+      </section>
+
+      <!-- Feature Modules Grid -->
+      <section style="margin-top: 3.5rem;">
+        <div class="page-header">
+          <div class="page-tag">Core Capabilities</div>
+          <h2 class="page-title">Comprehensive <span class="gradient-text">Financial Modules</span></h2>
+          <p class="page-subtitle">Built with institutional BFSI banking rules, serverless Google Sheets sync, and AI credit reasoning.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Card 1: Eligibility Checker -->
+          <a href="eligibility.html" class="feature-card">
+            <div class="feature-icon-wrapper feature-icon-1">
+              <i class="fa-solid fa-stamp"></i>
+            </div>
+            <h3 class="feature-title">Loan Eligibility Checker</h3>
+            <p class="feature-desc">
+              Rule-based multi-factor validation checking salary threshold (>₹30k), credit score (>700), existing EMIs (<₹20k), and minimum age (≥21). Automatically calculates 20× salary sanction with FOIR analysis.
+            </p>
+            <div class="feature-arrow">
+              Launch Checker <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </a>
+
+          <!-- Card 2: Credit Analyzer -->
+          <a href="credit-analyzer.html" class="feature-card">
+            <div class="feature-icon-wrapper feature-icon-2">
+              <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <h3 class="feature-title">Credit Score Analyzer</h3>
+            <p class="feature-desc">
+              Interactive radial credit meter classifying profiles into Excellent (750–900), Good (650–749), and Poor (300–649). Features bureau percentile analysis and score improvement protocols.
+            </p>
+            <div class="feature-arrow">
+              Analyze Score <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </a>
+
+          <!-- Card 3: EMI Calculator -->
+          <a href="emi-calculator.html" class="feature-card">
+            <div class="feature-icon-wrapper feature-icon-3">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <h3 class="feature-title">Reducing-Balance EMI Calculator</h3>
+            <p class="feature-desc">
+              Computes exact monthly repayments using standard reducing-balance math: <code>EMI = (P × R × (1+R)^N) / ((1+R)^N − 1)</code>. Includes visual principal/interest breakdown and CSV export.
+            </p>
+            <div class="feature-arrow">
+              Compute EMI <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </a>
+
+          <!-- Card 4: AI Advisor -->
+          <a href="ai-advisor.html" class="feature-card">
+            <div class="feature-icon-wrapper feature-icon-4">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="feature-title">AI Financial Advisor</h3>
+            <p class="feature-desc">
+              Powered by Groq Cloud (Llama-3.3-70b) and Anthropic Claude 3.5 Sonnet. Delivers contextual debt-reduction advice, loan restructuring roadmaps, and rejection recovery guidance.
+            </p>
+            <div class="feature-arrow">
+              Consult AI Advisor <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Architecture Showcase -->
+      <section style="margin-top: 4.5rem;">
+        <div class="glass-card" style="padding: 3rem 2rem;">
+          <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div class="page-tag"><i class="fa-solid fa-network-wired"></i> Architecture & Workflow</div>
+            <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700;">
+              End-to-End <span class="gradient-text">Serverless & Client Pipeline</span>
+            </h3>
+            <p style="color: var(--text-secondary); max-width: 650px; margin: 0.5rem auto 0;">
+              Combines lightweight client-side speed with optional Python Flask REST services and Google Sheets cloud logging.
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: center;">
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.75rem 1.25rem;">
+              <div style="font-size: 2rem; color: var(--secondary); margin-bottom: 1rem;"><i class="fa-solid fa-user-pen"></i></div>
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">1. Data Collection</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Interactive sliders and forms capture applicant income, score, commitments, and age.</p>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.75rem 1.25rem;">
+              <div style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"><i class="fa-solid fa-gears"></i></div>
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">2. Financial Rules</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Rule validation enforces >30k salary, >700 score, <20k EMI, and age ≥21 with 20× sanction calculation.</p>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.75rem 1.25rem;">
+              <div style="font-size: 2rem; color: #a855f7; margin-bottom: 1rem;"><i class="fa-solid fa-microchip"></i></div>
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">3. AI Underwriting</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Claude & Groq APIs generate institutional credit recommendations and recovery roadmaps.</p>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.75rem 1.25rem;">
+              <div style="font-size: 2rem; color: var(--success); margin-bottom: 1rem;"><i class="fa-solid fa-table-cells"></i></div>
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">4. Sheets Storage</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Google Apps Script automatically appends audit records to Google Sheets with zero server maintenance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="brand-text" style="font-size: 1.15rem;">Loan<span>AI</span></div>
+          </div>
+          <p class="footer-desc">
+            Next-generation AI-powered BFSI financial underwriting and decision platform.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Core Modules</h4>
+          <ul class="footer-links">
+            <li><a href="eligibility.html" class="footer-link">Loan Eligibility Checker</a></li>
+            <li><a href="credit-analyzer.html" class="footer-link">Credit Score Analyzer</a></li>
+            <li><a href="emi-calculator.html" class="footer-link">EMI Calculator</a></li>
+            <li><a href="ai-advisor.html" class="footer-link">AI Financial Advisor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Integrations</h4>
+          <ul class="footer-links">
+            <li><a href="https://console.groq.com" target="_blank" class="footer-link">Groq Cloud API</a></li>
+            <li><a href="https://anthropic.com" target="_blank" class="footer-link">Claude AI API</a></li>
+            <li><a href="https://sheets.new" target="_blank" class="footer-link">Google Sheets Sync</a></li>
+            <li><a href="history.html" class="footer-link">Application Records</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Technologies</h4>
+          <ul class="footer-links">
+            <li><span class="footer-link">Python 3.14 & Flask</span></li>
+            <li><span class="footer-link">HTML5 & CSS3 Glassmorphism</span></li>
+            <li><span class="footer-link">Vanilla JavaScript ES6+</span></li>
+            <li><span class="footer-link">Google Apps Script</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 BFSI LoanAI Platform. Built for Advanced Banking & Financial Services.</div>
+        <div style="display: flex; gap: 1rem;">
+          <span style="color: var(--success);"><i class="fa-solid fa-circle-check"></i> System Operational</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 0.5rem;"></i>
+          System API & Cloud Configuration
+        </div>
+        <button id="closeSettingsBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingGroqKey">
+          <span>Groq API Key (Llama-3.3-70b)</span>
+          <a href="https://console.groq.com/keys" target="_blank" style="color: var(--secondary); font-size: 0.75rem; text-decoration: none;">Get Free Key</a>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-key input-icon"></i>
+          <input type="password" id="settingGroqKey" class="form-control" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+        <div class="form-hint">Enables ultra-fast LLM responses for financial underwriting.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingClaudeKey">
+          <span>Claude API Key (Anthropic)</span>
+          <a href="https://console.anthropic.com/" target="_blank" style="color: var(--secondary); font-size: 0.75rem; text-decoration: none;">Get Key</a>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-robot input-icon"></i>
+          <input type="password" id="settingClaudeKey" class="form-control" placeholder="sk-ant-api03-xxxxxxxxxxxx">
+        </div>
+        <div class="form-hint">Used for deep financial reasoning and recovery plans.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingSheetsUrl">
+          <span>Google Apps Script Web App URL</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-table input-icon"></i>
+          <input type="url" id="settingSheetsUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+        <div class="form-hint">Automatically saves every loan evaluation to your Google Sheet.</div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <button id="saveSettingsBtn" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-floppy-disk"></i> Save Configuration
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>

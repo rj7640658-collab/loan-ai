@@ -1,0 +1,98 @@
+[
+  {
+    "id": "20260929232034810",
+    "timestamp": "2026-09-29 23:20:34",
+    "applicant_name": "Priya Verma",
+    "monthly_salary": 28000.0,
+    "credit_score": 670,
+    "existing_emi": 22000.0,
+    "age": 20,
+    "status": "REJECTED",
+    "is_eligible": false,
+    "eligible_amount": 0,
+    "risk_classification": "High Risk (Non-Compliant)",
+    "foir_percentage": 78.57,
+    "max_repayment_capacity": 0,
+    "rejection_reasons": [
+      "Monthly salary must be strictly greater than \u20b930,000 (Current: \u20b928,000.00).",
+      "Credit score must be strictly greater than 700 (Current: 670).",
+      "Existing EMI obligations must be strictly below \u20b920,000 (Current: \u20b922,000.00).",
+      "Applicant age must be at least 21 years (Current: 20 years)."
+    ],
+    "passed_checks": [],
+    "ai_provider": "BFSI Expert Financial Intelligence Engine",
+    "ai_reasoning": "**Underwriting Assessment: Action Required for Qualification**\n\n\u2022 **Primary Bottlenecks:** Your application does not yet meet institutional risk criteria due to: Monthly salary must be strictly greater than \u20b930,000 (Current: \u20b928,000.00).; Credit score must be strictly greater than 700 (Current: 670).; Existing EMI obligations must be strictly below \u20b920,000 (Current: \u20b922,000.00).; Applicant age must be at least 21 years (Current: 20 years)..\n\u2022 **Target Recovery Roadmap:**\n  1. Increase verified net income above \u20b930,000 or introduce a creditworthy co-applicant (e.g., spouse or parent).\n  1. Address your 670 credit score: pay all credit card statements before the billing date and resolve any past late-payment remarks.\n  1. De-leverage existing loans: prepay small personal loans or credit lines to bring monthly obligations strictly under \u20b920,000 (currently \u20b922,000).\n  1. Applicants must reach 21 years of legal credit contracting age. You can apply with a primary adult guardian or co-borrower.\n\n\u2022 **Re-evaluation Timeline:** Once these parameters are rectified, re-assessment typically takes 30\u201360 business days for bureau reporting synchronization."
+  },
+  {
+    "id": "20260929232034806",
+    "timestamp": "2026-09-29 23:20:34",
+    "applicant_name": "Arjun Sharma",
+    "monthly_salary": 65000.0,
+    "credit_score": 780,
+    "existing_emi": 8000.0,
+    "age": 29,
+    "status": "APPROVED",
+    "is_eligible": true,
+    "eligible_amount": 1300000.0,
+    "risk_classification": "Low Risk (Prime Borrower)",
+    "foir_percentage": 12.31,
+    "max_repayment_capacity": 24500.0,
+    "rejection_reasons": [],
+    "passed_checks": [
+      "Monthly salary exceeds minimum threshold of \u20b930,000.",
+      "Credit score is above 700 benchmark.",
+      "Existing monthly EMI obligations are below \u20b920,000 limit.",
+      "Applicant meets the minimum age requirement of 21 years."
+    ],
+    "ai_provider": "BFSI Expert Financial Intelligence Engine",
+    "ai_reasoning": "**Underwriting Decision: Approved for \u20b91,300,000**\n\n\u2022 **Risk Profile:** Your credit score of 780 and low debt-to-income ratio (FOIR of 12.3%) qualify you as a prime borrower. Your existing commitments of \u20b98,000/month leave a healthy disposable buffer.\n\u2022 **Optimal Loan Structuring:** To optimize interest payments on \u20b91,300,000, select a 3 to 5-year tenure if opt for personal financing, or 15\u201320 years for a home loan to keep the new EMI under 40% of net monthly income.\n\u2022 **Prepayment Strategy:** Make one extra EMI payment every calendar year or increase your EMI by 5% annually to reduce total interest outflow by up to 28%."
+  },
+  {
+    "id": "20260929232007632",
+    "timestamp": "2026-09-29 23:20:07",
+    "applicant_name": "Priya Verma",
+    "monthly_salary": 28000.0,
+    "credit_score": 670,
+    "existing_emi": 22000.0,
+    "age": 20,
+    "status": "REJECTED",
+    "is_eligible": false,
+    "eligible_amount": 0,
+    "risk_classification": "High Risk (Non-Compliant)",
+    "foir_percentage": 78.57,
+    "max_repayment_capacity": 0,
+    "rejection_reasons": [
+      "Monthly salary must be strictly greater than \u20b930,000 (Current: \u20b928,000.00).",
+      "Credit score must be strictly greater than 700 (Current: 670).",
+      "Existing EMI obligations must be strictly below \u20b920,000 (Current: \u20b922,000.00).",
+      "Applicant age must be at least 21 years (Current: 20 years)."
+    ],
+    "passed_checks": [],
+    "ai_provider": "BFSI Expert Financial Intelligence Engine",
+    "ai_reasoning": "**Underwriting Assessment: Action Required for Qualification**\n\n\u2022 **Primary Bottlenecks:** Your application does not yet meet institutional risk criteria due to: Monthly salary must be strictly greater than \u20b930,000 (Current: \u20b928,000.00).; Credit score must be strictly greater than 700 (Current: 670).; Existing EMI obligations must be strictly below \u20b920,000 (Current: \u20b922,000.00).; Applicant age must be at least 21 years (Current: 20 years)..\n\u2022 **Target Recovery Roadmap:**\n  1. Increase verified net income above \u20b930,000 or introduce a creditworthy co-applicant (e.g., spouse or parent).\n  1. Address your 670 credit score: pay all credit card statements before the billing date and resolve any past late-payment remarks.\n  1. De-leverage existing loans: prepay small personal loans or credit lines to bring monthly obligations strictly under \u20b920,000 (currently \u20b922,000).\n  1. Applicants must reach 21 years of legal credit contracting age. You can apply with a primary adult guardian or co-borrower.\n\n\u2022 **Re-evaluation Timeline:** Once these parameters are rectified, re-assessment typically takes 30\u201360 business days for bureau reporting synchronization."
+  },
+  {
+    "id": "20260929232007628",
+    "timestamp": "2026-09-29 23:20:07",
+    "applicant_name": "Arjun Sharma",
+    "monthly_salary": 65000.0,
+    "credit_score": 780,
+    "existing_emi": 8000.0,
+    "age": 29,
+    "status": "APPROVED",
+    "is_eligible": true,
+    "eligible_amount": 1300000.0,
+    "risk_classification": "Low Risk (Prime Borrower)",
+    "foir_percentage": 12.31,
+    "max_repayment_capacity": 24500.0,
+    "rejection_reasons": [],
+    "passed_checks": [
+      "Monthly salary exceeds minimum threshold of \u20b930,000.",
+      "Credit score is above 700 benchmark.",
+      "Existing monthly EMI obligations are below \u20b920,000 limit.",
+      "Applicant meets the minimum age requirement of 21 years."
+    ],
+    "ai_provider": "BFSI Expert Financial Intelligence Engine",
+    "ai_reasoning": "**Underwriting Decision: Approved for \u20b91,300,000**\n\n\u2022 **Risk Profile:** Your credit score of 780 and low debt-to-income ratio (FOIR of 12.3%) qualify you as a prime borrower. Your existing commitments of \u20b98,000/month leave a healthy disposable buffer.\n\u2022 **Optimal Loan Structuring:** To optimize interest payments on \u20b91,300,000, select a 3 to 5-year tenure if opt for personal financing, or 15\u201320 years for a home loan to keep the new EMI under 40% of net monthly income.\n\u2022 **Prepayment Strategy:** Make one extra EMI payment every calendar year or increase your EMI by 5% annually to reduce total interest outflow by up to 28%."
+  }
+]

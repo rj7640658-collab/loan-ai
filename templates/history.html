@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Records & Google Sheets - BFSI LoanAI</title>
+  <meta name="description" content="View saved loan eligibility evaluation records, filter by status, export to CSV, and synchronize serverless records with Google Sheets via Google Apps Script.">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="bg-ambient-layer">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon-box">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="brand-text">Loan<span>AI</span></div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="eligibility.html" class="nav-link"><i class="fa-solid fa-stamp"></i> Eligibility Checker</a></li>
+          <li><a href="credit-analyzer.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Credit Analyzer</a></li>
+          <li><a href="emi-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> EMI Calculator</a></li>
+          <li><a href="ai-advisor.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advisor</a></li>
+          <li><a href="history.html" class="nav-link active"><i class="fa-solid fa-database"></i> Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="openSettingsBtn" class="btn-icon" title="Configure AI & Google Sheets API Settings">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <a href="eligibility.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-circle-check"></i> New Check
+          </a>
+          <button class="btn-icon mobile-menu-btn" title="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <div class="page-header">
+        <div class="page-tag">
+          <i class="fa-solid fa-database"></i> Milestone 4.3
+        </div>
+        <h1 class="page-title">
+          Application Records & <span class="gradient-text">Google Sheets</span>
+        </h1>
+        <p class="page-subtitle">
+          Audited log of evaluated borrower profiles with status filtering, CSV export, and serverless Google Apps Script synchronization.
+        </p>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="glass-card" style="margin-bottom: 2rem; padding: 1.5rem 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">Filter by Status:</div>
+            <select id="filterStatusSelect" class="form-control" style="width: auto; padding-left: 1rem;">
+              <option value="ALL">All Applications</option>
+              <option value="APPROVED">Approved Only</option>
+              <option value="REJECTED">Rejected Only</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <button id="exportRecordsCsvBtn" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-file-csv"></i> Export to CSV
+            </button>
+            <button id="clearRecordsBtn" class="btn btn-secondary btn-sm" style="color: var(--danger); border-color: var(--danger-border);">
+              <i class="fa-solid fa-trash"></i> Clear Records
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Records Table -->
+      <div class="glass-card">
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Applicant Name</th>
+                <th>Salary (₹)</th>
+                <th>Credit Score</th>
+                <th>Existing EMI (₹)</th>
+                <th>Status</th>
+                <th>Eligible Sanction</th>
+              </tr>
+            </thead>
+            <tbody id="recordsTableBody">
+              <!-- Dynamically populated by script.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Google Sheets Serverless Integration Guide Box -->
+      <div class="glass-card" style="margin-top: 3rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--success);">
+            <i class="fa-solid fa-table-cells"></i>
+          </div>
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: #fff;">
+              Google Sheets Serverless Data Storage Setup
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+              Zero-backend cloud persistence via Google Apps Script Web App.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; font-size: 0.88rem; color: var(--text-secondary);">
+          <div style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong style="color: #fff; display: block; margin-bottom: 0.4rem;">Step 1: Open Google Sheets</strong>
+            Create a new blank sheet on <a href="https://sheets.new" target="_blank" style="color: var(--secondary);">sheets.new</a> named "AI Loan Applications".
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong style="color: #fff; display: block; margin-bottom: 0.4rem;">Step 2: Add Apps Script</strong>
+            Click <em>Extensions &rarr; Apps Script</em> and paste the code from <code>google_apps_script.js</code> provided in this repo.
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong style="color: #fff; display: block; margin-bottom: 0.4rem;">Step 3: Deploy as Web App</strong>
+            Click <em>Deploy &rarr; New deployment &rarr; Web app</em>, set access to <strong>"Anyone"</strong>, and deploy.
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong style="color: #fff; display: block; margin-bottom: 0.4rem;">Step 4: Paste Web App URL</strong>
+            Click the gear icon in the top navigation or edit <code>.env</code> to store the URL. All future evaluations will sync in real time!
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="brand-text" style="font-size: 1.15rem;">Loan<span>AI</span></div>
+          </div>
+          <p class="footer-desc">Institutional BFSI Data Storage and Audit Trails.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Modules</h4>
+          <ul class="footer-links">
+            <li><a href="eligibility.html" class="footer-link">Eligibility Checker</a></li>
+            <li><a href="credit-analyzer.html" class="footer-link">Credit Analyzer</a></li>
+            <li><a href="emi-calculator.html" class="footer-link">EMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Storage</h4>
+          <ul class="footer-links">
+            <li><a href="history.html" class="footer-link">Local Application Logs</a></li>
+            <li><a href="https://sheets.new" target="_blank" class="footer-link">Google Sheets Extension</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>AI Technologies</h4>
+          <ul class="footer-links">
+            <li><span class="footer-link">Claude 3.5 Sonnet</span></li>
+            <li><span class="footer-link">Groq Cloud Llama-3.3</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 BFSI LoanAI Platform.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 0.5rem;"></i>
+          System API & Cloud Configuration
+        </div>
+        <button id="closeSettingsBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingGroqKey">
+          <span>Groq API Key (Llama-3.3-70b)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-key input-icon"></i>
+          <input type="password" id="settingGroqKey" class="form-control" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingClaudeKey">
+          <span>Claude API Key (Anthropic)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-robot input-icon"></i>
+          <input type="password" id="settingClaudeKey" class="form-control" placeholder="sk-ant-api03-xxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingSheetsUrl">
+          <span>Google Apps Script Web App URL</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-table input-icon"></i>
+          <input type="url" id="settingSheetsUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+      </div>
+
+      <button id="saveSettingsBtn" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
+        <i class="fa-solid fa-floppy-disk"></i> Save Configuration
+      </button>
+    </div>
+  </div>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>

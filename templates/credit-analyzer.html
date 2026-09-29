@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Score Analyzer - BFSI LoanAI</title>
+  <meta name="description" content="Interactive credit score risk classification and underwriting tier analysis for Excellent (750-900), Good (650-749), and Poor (300-649) credit profiles.">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="bg-ambient-layer">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon-box">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="brand-text">Loan<span>AI</span></div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="eligibility.html" class="nav-link"><i class="fa-solid fa-stamp"></i> Eligibility Checker</a></li>
+          <li><a href="credit-analyzer.html" class="nav-link active"><i class="fa-solid fa-gauge-high"></i> Credit Analyzer</a></li>
+          <li><a href="emi-calculator.html" class="nav-link"><i class="fa-solid fa-calculator"></i> EMI Calculator</a></li>
+          <li><a href="ai-advisor.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advisor</a></li>
+          <li><a href="history.html" class="nav-link"><i class="fa-solid fa-database"></i> Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="openSettingsBtn" class="btn-icon" title="Configure AI & Google Sheets API Settings">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <a href="eligibility.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-circle-check"></i> Check Eligibility
+          </a>
+          <button class="btn-icon mobile-menu-btn" title="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <div class="page-header">
+        <div class="page-tag">
+          <i class="fa-solid fa-chart-line"></i> Milestone 3.2
+        </div>
+        <h1 class="page-title">
+          Credit Score <span class="gradient-text">Analyzer</span>
+        </h1>
+        <p class="page-subtitle">
+          Evaluate bureau creditworthiness, underwriting risk classification, interest rate expectations, and actionable credit improvement protocols.
+        </p>
+      </div>
+
+      <div class="app-grid">
+
+        <!-- Left Column: Score Simulator & Input -->
+        <div class="glass-card">
+          <h2 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-sliders" style="color: var(--primary);"></i>
+            Score Evaluation & Simulation
+          </h2>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>CIBIL / Experian Credit Score</span>
+              <span class="form-label-val" id="scoreValueIndicator">Score: 300 to 900</span>
+            </div>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-gauge-high input-icon"></i>
+              <input type="number" id="analyzerScoreInput" class="form-control" min="300" max="900" value="760">
+            </div>
+            <div class="range-container">
+              <input type="range" id="analyzerScoreSlider" class="range-slider" min="300" max="900" step="5" value="760">
+              <div class="range-slider-bounds">
+                <span>300 (Poor)</span>
+                <span>650 (Good)</span>
+                <span>750 (Excellent)</span>
+                <span>900</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 0.6rem;">
+              Quick Scenario Presets:
+            </div>
+            <div class="preset-chips">
+              <span class="chip score-preset-chip" data-score="550">
+                <i class="fa-solid fa-triangle-exclamation" style="color: var(--danger);"></i> 550 (Poor Tier)
+              </span>
+              <span class="chip score-preset-chip" data-score="680">
+                <i class="fa-solid fa-circle-dot" style="color: var(--warning);"></i> 680 (Good Tier)
+              </span>
+              <span class="chip score-preset-chip active" data-score="760">
+                <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> 760 (Excellent Tier)
+              </span>
+              <span class="chip score-preset-chip" data-score="840">
+                <i class="fa-solid fa-crown" style="color: #fbbf24;"></i> 840 (Super Prime)
+              </span>
+            </div>
+          </div>
+
+          <!-- Institutional Tier Reference -->
+          <div style="margin-top: 2rem; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-size: 0.9rem; color: #fff; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em;">
+              <i class="fa-solid fa-book-bookmark" style="color: var(--secondary); margin-right: 0.35rem;"></i>
+              Institutional Underwriting Tiers:
+            </h4>
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.08); border-left: 3px solid var(--success);">
+                <div>
+                  <strong style="color: var(--success);">Excellent Tier (750 – 900)</strong>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;">Lowest rates, instant pre-approvals, maximum tenure flexibility.</div>
+                </div>
+                <span class="badge badge-success">Prime</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; border-radius: var(--radius-sm); background: rgba(245, 158, 11, 0.08); border-left: 3px solid var(--warning);">
+                <div>
+                  <strong style="color: var(--warning);">Good Tier (650 – 749)</strong>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;">Standard rates, regular underwriting scrutiny.</div>
+                </div>
+                <span class="badge badge-warning">Standard</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; border-radius: var(--radius-sm); background: rgba(239, 68, 68, 0.08); border-left: 3px solid var(--danger);">
+                <div>
+                  <strong style="color: var(--danger);">Poor Tier (300 – 649)</strong>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;">High rejection risk, elevated pricing, collateral required.</div>
+                </div>
+                <span class="badge badge-danger">Subprime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Visual Gauge & Analysis -->
+        <div class="glass-card">
+          <div class="credit-gauge-container">
+            <div class="radial-gauge">
+              <svg viewBox="0 0 200 200">
+                <circle class="gauge-bg" cx="100" cy="100" r="90"></circle>
+                <circle id="gaugeFillCircle" class="gauge-fill" cx="100" cy="100" r="90"></circle>
+              </svg>
+              <div class="gauge-center-content">
+                <div id="gaugeScoreValue" class="gauge-score-value">760</div>
+                <div id="gaugeScoreTier" class="gauge-score-tier tier-excellent">Excellent (Tier 1 Prime)</div>
+              </div>
+            </div>
+
+            <!-- Tier Bar Indicator -->
+            <div style="width: 100%; max-width: 320px;">
+              <div class="credit-tier-bar">
+                <div class="tier-segment poor" title="Poor: 300-649"></div>
+                <div class="tier-segment good" title="Good: 650-749"></div>
+                <div class="tier-segment excellent" title="Excellent: 750-900"></div>
+              </div>
+              <div class="tier-labels">
+                <span>300 (Poor)</span>
+                <span>650</span>
+                <span>750</span>
+                <span>900 (Excellent)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analysis Stats Grid -->
+          <div class="stats-mini-grid" style="margin-top: 1rem;">
+            <div class="stat-mini-card">
+              <div class="stat-mini-label">Approval Odds</div>
+              <div id="creditApprovalOdds" class="stat-mini-val" style="font-size: 1.05rem; color: #fff;">
+                95% - High Likelihood
+              </div>
+            </div>
+            <div class="stat-mini-card">
+              <div class="stat-mini-label">Typical Interest Rate</div>
+              <div id="creditInterestRange" class="stat-mini-val" style="font-size: 1.05rem; color: var(--secondary);">
+                8.25% - 10.50%
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommendations Box -->
+          <div style="margin-top: 1.25rem;">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #fff; display: flex; align-items: center; gap: 0.45rem;">
+              <i class="fa-solid fa-lightbulb" style="color: #fbbf24;"></i>
+              Tailored Credit Recommendations & Improvement Protocols:
+            </h4>
+            <ul id="creditRecommendationsList" class="rule-checklist" style="margin-bottom: 1.5rem;">
+              <!-- Populated dynamically by script.js -->
+            </ul>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="eligibility.html" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-stamp"></i> Test Loan Eligibility with this Score
+              </a>
+              <a href="ai-advisor.html" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI for Score Plan
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="brand-text" style="font-size: 1.15rem;">Loan<span>AI</span></div>
+          </div>
+          <p class="footer-desc">BFSI Credit Analytics & Risk Scoring Intelligence.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Modules</h4>
+          <ul class="footer-links">
+            <li><a href="eligibility.html" class="footer-link">Eligibility Checker</a></li>
+            <li><a href="credit-analyzer.html" class="footer-link">Credit Analyzer</a></li>
+            <li><a href="emi-calculator.html" class="footer-link">EMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Reference Tiers</h4>
+          <ul class="footer-links">
+            <li><span class="footer-link">Excellent: 750 – 900</span></li>
+            <li><span class="footer-link">Good: 650 – 749</span></li>
+            <li><span class="footer-link">Poor: 300 – 649</span></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Cloud Storage</h4>
+          <ul class="footer-links">
+            <li><a href="history.html" class="footer-link">Application History</a></li>
+            <li><a href="https://sheets.new" target="_blank" class="footer-link">Google Sheets Sync</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 BFSI LoanAI Platform.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 0.5rem;"></i>
+          System API & Cloud Configuration
+        </div>
+        <button id="closeSettingsBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingGroqKey">
+          <span>Groq API Key (Llama-3.3-70b)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-key input-icon"></i>
+          <input type="password" id="settingGroqKey" class="form-control" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingClaudeKey">
+          <span>Claude API Key (Anthropic)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-robot input-icon"></i>
+          <input type="password" id="settingClaudeKey" class="form-control" placeholder="sk-ant-api03-xxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingSheetsUrl">
+          <span>Google Apps Script Web App URL</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-table input-icon"></i>
+          <input type="url" id="settingSheetsUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+      </div>
+
+      <button id="saveSettingsBtn" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
+        <i class="fa-solid fa-floppy-disk"></i> Save Configuration
+      </button>
+    </div>
+  </div>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reducing-Balance EMI Calculator - BFSI LoanAI</title>
+  <meta name="description" content="Calculate monthly loan repayments using the standard reducing-balance EMI formula with principal vs interest breakdown and full amortization schedule export.">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="bg-ambient-layer">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon-box">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="brand-text">Loan<span>AI</span></div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="eligibility.html" class="nav-link"><i class="fa-solid fa-stamp"></i> Eligibility Checker</a></li>
+          <li><a href="credit-analyzer.html" class="nav-link"><i class="fa-solid fa-gauge-high"></i> Credit Analyzer</a></li>
+          <li><a href="emi-calculator.html" class="nav-link active"><i class="fa-solid fa-calculator"></i> EMI Calculator</a></li>
+          <li><a href="ai-advisor.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Advisor</a></li>
+          <li><a href="history.html" class="nav-link"><i class="fa-solid fa-database"></i> Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="openSettingsBtn" class="btn-icon" title="Configure AI & Google Sheets API Settings">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <a href="eligibility.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-circle-check"></i> Check Eligibility
+          </a>
+          <button class="btn-icon mobile-menu-btn" title="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <div class="page-header">
+        <div class="page-tag">
+          <i class="fa-solid fa-calculator"></i> Milestone 3.3
+        </div>
+        <h1 class="page-title">
+          Reducing-Balance <span class="gradient-text">EMI Calculator</span>
+        </h1>
+        <p class="page-subtitle">
+          Calculate precise monthly instalments using the standard reducing-balance amortizing equation: <code>EMI = [P × R × (1+R)ᴺ] / [(1+R)ᴺ − 1]</code>.
+        </p>
+      </div>
+
+      <div class="app-grid">
+
+        <!-- Left Column: Input Sliders -->
+        <div class="glass-card">
+          <h2 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-sliders" style="color: var(--primary);"></i>
+            Loan Parameters
+          </h2>
+
+          <!-- Principal Amount -->
+          <div class="form-group">
+            <div class="form-label">
+              <span>Principal Loan Amount (P)</span>
+              <span class="form-label-val" id="amountDisplay">₹5,00,000</span>
+            </div>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-indian-rupee-sign input-icon"></i>
+              <input type="number" id="emiAmountInput" class="form-control" min="50000" max="10000000" step="10000" value="500000">
+            </div>
+            <div class="range-container">
+              <input type="range" id="emiAmountSlider" class="range-slider" min="50000" max="5000000" step="25000" value="500000">
+              <div class="range-slider-bounds">
+                <span>₹50,000</span>
+                <span>₹25,00,000</span>
+                <span>₹50,00,000</span>
+              </div>
+            </div>
+            <div class="preset-chips">
+              <span class="chip emi-amount-chip active" data-val="500000">₹5 Lakh</span>
+              <span class="chip emi-amount-chip" data-val="1000000">₹10 Lakh</span>
+              <span class="chip emi-amount-chip" data-val="2500000">₹25 Lakh</span>
+              <span class="chip emi-amount-chip" data-val="5000000">₹50 Lakh</span>
+            </div>
+          </div>
+
+          <!-- Annual Interest Rate -->
+          <div class="form-group">
+            <div class="form-label">
+              <span>Annual Interest Rate (% p.a.)</span>
+              <span class="form-label-val" id="rateDisplay">10.5%</span>
+            </div>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-percent input-icon"></i>
+              <input type="number" id="emiRateInput" class="form-control" min="1" max="30" step="0.1" value="10.5">
+            </div>
+            <div class="range-container">
+              <input type="range" id="emiRateSlider" class="range-slider" min="5" max="25" step="0.25" value="10.5">
+              <div class="range-slider-bounds">
+                <span>5% (Home Prime)</span>
+                <span>10.5% (Standard)</span>
+                <span>25% (Unsecured)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tenure in Months -->
+          <div class="form-group">
+            <div class="form-label">
+              <span>Loan Tenure (Months)</span>
+              <span class="form-label-val" id="tenureDisplay">36 Months (3 Yrs)</span>
+            </div>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-clock input-icon"></i>
+              <input type="number" id="emiTenureInput" class="form-control" min="6" max="360" step="1" value="36">
+            </div>
+            <div class="range-container">
+              <input type="range" id="emiTenureSlider" class="range-slider" min="6" max="240" step="6" value="36">
+              <div class="range-slider-bounds">
+                <span>6 Months</span>
+                <span>5 Years (60m)</span>
+                <span>20 Years (240m)</span>
+              </div>
+            </div>
+            <div class="preset-chips">
+              <span class="chip emi-tenure-chip" data-val="12">1 Year (12m)</span>
+              <span class="chip emi-tenure-chip active" data-val="36">3 Years (36m)</span>
+              <span class="chip emi-tenure-chip" data-val="60">5 Years (60m)</span>
+              <span class="chip emi-tenure-chip" data-val="120">10 Years (120m)</span>
+              <span class="chip emi-tenure-chip" data-val="240">20 Years (240m)</span>
+            </div>
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.5rem;">
+            <div style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-square-root-variable" style="color: var(--secondary); margin-right: 0.35rem;"></i>
+              Mathematical Formula:
+            </div>
+            <code style="font-family: var(--font-mono); font-size: 0.85rem; color: #93c5fd; display: block; margin-bottom: 0.5rem;">
+              EMI = [P × R × (1+R)ᴺ] / [(1+R)ᴺ − 1]
+            </code>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">
+              Where <strong>P</strong> = Principal, <strong>R</strong> = Monthly Interest Rate (Annual Rate ÷ 12 ÷ 100), and <strong>N</strong> = Number of Monthly Instalments.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: EMI Calculation Results -->
+        <div class="glass-card">
+          <div class="result-header" style="margin-bottom: 1rem;">
+            <div>
+              <div class="result-title">Monthly Repayment Summary</div>
+              <span class="badge badge-info">Reducing Balance Method</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="window.print()">
+              <i class="fa-solid fa-print"></i> Print
+            </button>
+          </div>
+
+          <!-- Highlighted EMI Card -->
+          <div class="result-amount-display" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%); border-color: rgba(99, 102, 241, 0.4);">
+            <div class="result-amount-label">Monthly EMI Payable</div>
+            <div id="emiValueDisplay" class="result-amount-value" style="color: #fff; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              ₹16,253
+            </div>
+            <div class="form-hint" style="justify-content: center; margin-top: 0.4rem;">
+              <i class="fa-solid fa-calendar-check" style="color: var(--secondary);"></i>
+              Payable monthly across selected tenure
+            </div>
+          </div>
+
+          <!-- Breakdown Mini Grid -->
+          <div class="stats-mini-grid">
+            <div class="stat-mini-card">
+              <div class="stat-mini-label">Principal Amount</div>
+              <div id="emiPrincipalDisplay" class="stat-mini-val" style="color: var(--primary);">₹5,00,000</div>
+            </div>
+            <div class="stat-mini-card">
+              <div class="stat-mini-label">Total Interest Payable</div>
+              <div id="emiInterestDisplay" class="stat-mini-val" style="color: var(--secondary);">₹85,116</div>
+            </div>
+            <div class="stat-mini-card" style="grid-column: span 2;">
+              <div class="stat-mini-label">Total Amount Payable (Principal + Interest)</div>
+              <div id="emiTotalDisplay" class="stat-mini-val" style="color: #fff; font-size: 1.4rem;">₹5,85,116</div>
+            </div>
+          </div>
+
+          <!-- Visual Ratio Breakdown -->
+          <div style="margin: 1.5rem 0 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.35rem;">
+              <span>Principal vs. Interest Distribution</span>
+              <span id="ratioText">Payment Share</span>
+            </div>
+            <div class="emi-breakdown-bar">
+              <div id="emiPrincipalBar" class="breakdown-principal" style="width: 85%;"></div>
+              <div id="emiInterestBar" class="breakdown-interest" style="width: 15%;"></div>
+            </div>
+            <div class="breakdown-legend">
+              <div class="legend-item">
+                <div class="legend-dot principal"></div>
+                <span>Principal Loan Amount</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot interest"></div>
+                <span>Total Interest Cost</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amortization Table Toggle -->
+          <div style="margin-top: 2rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+              <h4 style="font-size: 0.95rem; color: #fff;">
+                <i class="fa-solid fa-table-list" style="color: var(--secondary); margin-right: 0.35rem;"></i>
+                Amortization Schedule
+              </h4>
+              <button id="exportEmiCsvBtn" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-file-csv"></i> Export CSV
+              </button>
+            </div>
+
+            <div class="table-responsive" style="max-height: 280px; overflow-y: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Schedule</th>
+                    <th>EMI</th>
+                    <th>Principal</th>
+                    <th>Interest</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody id="amortizationTableBody">
+                  <!-- Populated dynamically by script.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1rem;">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="brand-text" style="font-size: 1.15rem;">Loan<span>AI</span></div>
+          </div>
+          <p class="footer-desc">Precision Financial Engineering for Banking.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Modules</h4>
+          <ul class="footer-links">
+            <li><a href="eligibility.html" class="footer-link">Eligibility Checker</a></li>
+            <li><a href="credit-analyzer.html" class="footer-link">Credit Analyzer</a></li>
+            <li><a href="emi-calculator.html" class="footer-link">EMI Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Loan Calculators</h4>
+          <ul class="footer-links">
+            <li><span class="footer-link">Personal Loan EMI</span></li>
+            <li><span class="footer-link">Home Loan EMI</span></li>
+            <li><span class="footer-link">Car Loan EMI</span></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Cloud & Storage</h4>
+          <ul class="footer-links">
+            <li><a href="history.html" class="footer-link">Saved Applications</a></li>
+            <li><a href="https://sheets.new" target="_blank" class="footer-link">Google Sheets Sync</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 BFSI LoanAI Platform.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 0.5rem;"></i>
+          System API & Cloud Configuration
+        </div>
+        <button id="closeSettingsBtn" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingGroqKey">
+          <span>Groq API Key (Llama-3.3-70b)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-key input-icon"></i>
+          <input type="password" id="settingGroqKey" class="form-control" placeholder="gsk_xxxxxxxxxxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingClaudeKey">
+          <span>Claude API Key (Anthropic)</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-robot input-icon"></i>
+          <input type="password" id="settingClaudeKey" class="form-control" placeholder="sk-ant-api03-xxxxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="settingSheetsUrl">
+          <span>Google Apps Script Web App URL</span>
+        </label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-table input-icon"></i>
+          <input type="url" id="settingSheetsUrl" class="form-control" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+      </div>
+
+      <button id="saveSettingsBtn" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
+        <i class="fa-solid fa-floppy-disk"></i> Save Configuration
+      </button>
+    </div>
+  </div>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>
