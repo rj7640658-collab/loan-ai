@@ -23,3 +23,7 @@ htmlcov/
 *.log
 .DS_Store
 Thumbs.db
+
+# Nested duplicate directories & archives
+loan-ai/
+
