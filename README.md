@@ -4,22 +4,43 @@
 [![Flask Framework](https://img.shields.io/badge/framework-Flask%203.0%2B-lightgrey.svg)](https://flask.palletsprojects.com/)
 [![Tests Passing](https://img.shields.io/badge/pytest-13%20passed%20(100%25)-brightgreen.svg)](test_app.py)
 [![AI Engine](https://img.shields.io/badge/AI-Groq%20LLaMA%203.3%20%7C%20Claude%203.5-orange.svg)](https://groq.com/)
+[![Project Report](https://img.shields.io/badge/Documentation-PROJECT__REPORT.md-purple.svg)](PROJECT_REPORT.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 An institutional-grade, full-stack financial technology application built with Python (Flask) and a modern glassmorphic interface. It delivers automated loan underwriting decisions, reducing-balance EMI calculations, credit score risk tiering, dual-provider generative AI financial advisory, and bidirectional cloud synchronization with Google Sheets.
 
+> 📄 **Official Technical Report Available:**  
+> A dedicated standalone project technical specification and architecture report is maintained in [**`PROJECT_REPORT.md`**](PROJECT_REPORT.md). The full report is also embedded below.
+
 ---
 
-## 📑 Comprehensive Project Report
+## 📑 Project Technical & Architecture Report (`PROJECT_REPORT.md`)
+
+**Author / Maintainer:** Antigravity AI Engineering & BFSI Team  
+**System Version:** v1.0.0 Production-Ready  
+**Classification:** BFSI Credit Underwriting, Financial Risk Analysis & Generative AI Advisory  
+**Repository:** [https://github.com/rj7640658-collab/loan-ai](https://github.com/rj7640658-collab/loan-ai)  
+**Documentation File:** [PROJECT_REPORT.md](PROJECT_REPORT.md)  
+**Date:** October 2026  
+
+---
 
 ### 1. Executive Summary & Problem Statement
+
 In conventional Banking, Financial Services, and Insurance (BFSI) operations, retail loan evaluation faces recurring bottlenecks:
 - **High Latency:** Manual credit underwriting takes days or weeks to evaluate basic eligibility metrics.
 - **Opaque Disqualifications:** Applicants who fail criteria receive binary rejections without transparent rationale or actionable recovery pathways.
 - **Fragmented Tools:** Consumers must bounce between siloed calculators, credit bureau checkers, and advisors.
 
-**The Solution:**
+**The Solution:**  
 The **AI Loan Eligibility Checker & BFSI Intelligence Engine** unifies real-time algorithmic underwriting, compound interest calculation, credit bureau risk modeling, and LLM-powered financial advisory into a single, cohesive, responsive platform.
+
+By pairing deterministic algorithmic underwriting logic with high-performance Generative AI (powered by Groq LLaMA 3.3 70B and Anthropic Claude 3.5 Sonnet, with a built-in offline heuristic fallback), the system delivers:
+1. **Instant Loan Underwriting:** Real-time eligibility evaluation against institutional underwriting standards.
+2. **Transparent Decisioning:** Specific explanations of pass/fail criteria and permissible credit capacities.
+3. **Actionable Financial Roadmaps:** Step-by-step credit recovery guidance for subprime applicants and tenure/prepayment optimization for prime applicants.
+4. **Interactive Financial Calculators:** High-precision compound amortisation calculators and credit bureau risk analyzers.
+5. **Multi-Channel Cloud Sync:** Real-time persistence with dual local audit logging and Google Sheets synchronization via Google Apps Script.
 
 ---
 
